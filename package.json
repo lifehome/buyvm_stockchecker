@@ -5,5 +5,8 @@
   "main": "server.js",
   "author": "Ivan Ip<m@lifeho.me>",
   "license": "AGPL-3.0-or-later",
-  "private": true
+  "private": true,
+  "dependencies": {
+    "undici": "^4.5.1"
+  }
 }
