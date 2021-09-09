@@ -8,5 +8,8 @@
   "private": true,
   "dependencies": {
     "undici": "^4.5.1"
+  },
+  "devDependencies": {
+    "standard": "^16.0.3"
   }
 }
