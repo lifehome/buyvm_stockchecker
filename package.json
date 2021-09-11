@@ -8,6 +8,7 @@
   "private": true,
   "type": "module",
   "dependencies": {
+    "htmlparser2": "^7.1.1",
     "undici": "^4.5.1"
   },
   "devDependencies": {
