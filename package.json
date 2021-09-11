@@ -12,5 +12,9 @@
   },
   "devDependencies": {
     "standard": "^16.0.3"
+  },
+  "standard": {
+    "engine": "standard",
+    "parser": "@babel/eslint-parser"
   }
 }
