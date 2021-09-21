@@ -31,3 +31,5 @@ const fetch_products_from_category = async (whmcs, catalogue) => {
 
   return catalogue
 }
+
+export default fetch_products_from_category
