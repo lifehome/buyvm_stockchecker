@@ -1,7 +1,7 @@
 import { request } from 'undici'
 import * as cheerio from 'cheerio'
 
-const fetch_products_from_category = async (whmcs, catalogue) => {
+const fetchProductStock = async (whmcs, catalogue) => {
   for (let c of catalogue) {
     for (let el of c.nodes) {
       // Define how we get the response
@@ -32,4 +32,4 @@ const fetch_products_from_category = async (whmcs, catalogue) => {
   return catalogue
 }
 
-export default fetch_products_from_category
+export default fetchProductStock

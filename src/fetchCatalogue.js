@@ -2,7 +2,7 @@ import { request } from 'undici'
 import * as cheerio from 'cheerio'
 
 // Function to fetch latest product catalogue
-const fetch_whmcs_catalogue = async whmcs => {
+const fetchCatalog = async whmcs => {
   // Define how we get the response
   const { body } = await request(
     whmcs.BASE_URL + whmcs.PATH_CART_ALL_PAGE
@@ -72,4 +72,4 @@ const fetch_whmcs_catalogue = async whmcs => {
   )
 }
 
-export default fetch_whmcs_catalogue
+export default fetchCatalog
