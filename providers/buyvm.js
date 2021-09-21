@@ -10,11 +10,11 @@ const WHMCSconfig = {
   REQUIRE_CATEGORY_IDENTIFICATION: true,
   CATEGORY_IDENT_CONFIG: {
     separator: ' - ',
-    key_index: 1,
-    value_index: 0,
-    default_category: 'KVM Slices',
-    special_node_category: 'Miscellaneous',
-    special_node_exclusions: []
+    keyIndex: 1,
+    valueIndex: 0,
+    defaultCategory: 'KVM Slices',
+    specialNodeCategory: 'Miscellaneous',
+    specialNodeExclusions: []
   },
 
   PRODUCTS_LIST_SELECTOR: '#products',

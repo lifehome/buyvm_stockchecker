@@ -9,11 +9,11 @@ const WHMCSconfig = {
   REQUIRE_CATEGORY_IDENTIFICATION: true,
   CATEGORY_IDENT_CONFIG: {
     separator: ' - ',
-    key_index: 0,
-    value_index: 1,
-    default_category: 'Products',
-    special_node_category: 'Miscellaneous',
-    special_node_exclusions: ['Email Delivery']
+    keyIndex: 0,
+    valueIndex: 1,
+    defaultCategory: 'Products',
+    specialNodeCategory: 'Miscellaneous',
+    specialNodeExclusions: ['Email Delivery']
   },
 
   // WIP: Not yet investigated on this provider yet.
