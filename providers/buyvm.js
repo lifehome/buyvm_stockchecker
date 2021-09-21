@@ -25,7 +25,7 @@ const WHMCSconfig = {
     const name = $(el)
       .find('.package-name')
       .text().trim().replace(/\s+/g, ' ')
-      .replace(/.*(\d+[MTG]B)/, '$1')
+      .replace(/.*\s(\d+[MTG]B)/, '$1')
     const price = $(el)
       .find('.package-price').find('.price')
       .contents().filter(
