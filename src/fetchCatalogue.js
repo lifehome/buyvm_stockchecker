@@ -9,64 +9,64 @@ const fetchCatalog = async whmcs => {
   )
 
   // Obtain raw HTTP response body from WHMCS
-  const raw_response = await body.text()
+  const rawResponse = await body.text()
 
   // Use Cheerio to parse response body into usable DOM element
-  const $ = cheerio.load(raw_response, {
-    '_useHtmlParser2': true,
-    'xmlMode': false
+  const $ = cheerio.load(rawResponse, {
+    _useHtmlParser2: true,
+    xmlMode: false
   })
 
   // Instantiate a new array element for the catalogue
-  let catalogue = []
+  const catalogue = []
 
   // Push all categories into the array
   $(whmcs.CATEGORY_SELECTOR).find(whmcs.CATEGORY_NODES_SELECTOR)
-    .map((_, el) => {
+    .each((_, el) => {
       // Pop the config out of the closet
-      let {
-        default_category,
+      const {
+        defaultCategory,
         separator,
-        key_index,
-        value_index,
-        special_node_category,
-        special_node_exclusions
+        keyIndex,
+        valueIndex,
+        specialNodeCategory,
+        specialNodeExclusions
       } = whmcs.CATEGORY_IDENT_CONFIG
 
       // Item node definitions
-      let name     = $(el).attr(whmcs.CATEGORY_NODE_NAME_ATTR)
-      let category = default_category
-      let gid      = ($(el).attr('href')).match(whmcs.CATEGORY_GID_REGEX)[1]
+      let name = $(el).attr(whmcs.CATEGORY_NODE_NAME_ATTR)
+      let category = defaultCategory
+      const gid = ($(el).attr('href')).match(whmcs.CATEGORY_GID_REGEX)[1]
 
       // Identify product category and name if needed
       if (whmcs.REQUIRE_CATEGORY_IDENTIFICATION) {
         // Split the key value pair
-        let raw_item_name = $(el)
-                              .attr(whmcs.CATEGORY_NODE_NAME_ATTR)
-                              .split(separator)
+        const rawItemName = $(el)
+          .attr(whmcs.CATEGORY_NODE_NAME_ATTR)
+          .split(separator)
 
         // Categorize the node
-        category  = raw_item_name[key_index]
-                      ? special_node_exclusions.includes(
-                          raw_item_name[key_index]
-                        )
-                          ? special_node_category
-                          : raw_item_name[key_index]
-                      : special_node_category
-        
+        category = rawItemName[keyIndex]
+          ? specialNodeExclusions.includes(
+              rawItemName[keyIndex]
+            )
+              ? specialNodeCategory
+              : rawItemName[keyIndex]
+          : specialNodeCategory
+
         // Set the name of the node
-        name      = raw_item_name[value_index]
+        name = rawItemName[valueIndex]
       }
-      
+
       catalogue.push({ category, gid, name })
     })
 
   // Return consolidated array of product categories
   return Object.values(
-    catalogue.reduce((acc, {category, gid, name}) => {
-      acc[category] ??= {category, nodes: []}
-      acc[category].nodes.push({gid, name})
-      acc[category].nodes.sort((a, b) => a.gid > b.gid && 1 || -1)
+    catalogue.reduce((acc, { category, gid, name }) => {
+      acc[category] ??= { category, nodes: [] }
+      acc[category].nodes.push({ gid, name })
+      acc[category].nodes.sort((a, b) => (a.gid > b.gid && 1) || -1)
       return acc
     }, {})
   )
